@@ -10,7 +10,6 @@ import (
 func main() {
 
     var counter int
-
     lines := GetInput()
 
     for i, line := range lines {
@@ -38,9 +37,8 @@ func FindNumbers(line string, firstNumber bool) string {
         re = regexp.MustCompile(`(\d|oneight|eightwo|twone|one|two|three|four|five|six|seven|eight|nine)`)
     }
 
-    fmt.Println(re.FindAllString(line, -1))
-
     numbers := re.FindAllString(line, -1)
+    fmt.Println(numbers)
 
     if firstNumber {
         return numbers[0]
