@@ -13,8 +13,7 @@ func main() {
     lines := GetInput()
 
     for i, line := range lines {
-        fmt.Print(i)
-        fmt.Println(" -----------------------------------------------------")
+        fmt.Printf("%v -----------------------------------------------------\n", i)
         fmt.Println(line)
 
         first := FindNumbers(line, true)
