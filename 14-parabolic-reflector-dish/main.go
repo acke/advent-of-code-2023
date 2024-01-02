@@ -27,7 +27,7 @@ func main() {
 
 func RotateBoard(lines []string, direction string){
     rows := (len(lines)-1)
-    collums := (len(lines[0])-1)
+    columns := (len(lines[0])-1)
 
     for i, line := range lines {
         for j, _ := range line{
@@ -35,21 +35,21 @@ func RotateBoard(lines []string, direction string){
                 case "north":
                     MoveStoneNorth(lines, i, j, rows)
                 case "west":
-                    MoveStoneWest(lines, i, j, collums)
+                    MoveStoneWest(lines, i, j, columns)
                 case "south":
                     MoveStoneSouth(lines, (rows-i), j, rows)
                 case "east":
-                    MoveStoneEast(lines, i, j, collums)
+                    MoveStoneEast(lines, i, j, columns)
                 }
         }
     }
 }
 
-func MoveStoneEast (lines []string, i, j, collums int){
+func MoveStoneEast (lines []string, i, j, columns int){
     moveMore, checkNextStone := true, true
     targetStone := j+1
 
-    if j >= collums {return}
+    if j >= columns {return}
 
     for (moveMore){
         if lines[i][j] == 'O' {
@@ -58,7 +58,7 @@ func MoveStoneEast (lines []string, i, j, collums int){
                     lines[i] = UpdateSlice(lines[i], ".", j)
                     lines[i] = UpdateSlice(lines[i], "O", targetStone)
                     checkNextStone = false
-                } else if lines[i][targetStone] == '#' || targetStone >= collums {
+                } else if lines[i][targetStone] == '#' || targetStone >= columns {
                     moveMore = false
                     checkNextStone = false
                 } else{
@@ -71,10 +71,10 @@ func MoveStoneEast (lines []string, i, j, collums int){
     }
 }
 
-func MoveStoneWest (lines []string, i, j, collums int){
+func MoveStoneWest (lines []string, i, j, columns int){
     moveMore := true
 
-    if j >= collums {return}
+    if j >= columns {return}
 
     for (moveMore){
         if lines[i][j+1] == 'O' && lines[i][j] == '.' {
@@ -146,7 +146,6 @@ func CalculateStones(lines []string) (counter int){
 }
 
 func PrintLines (lines []string){
-
     for _, line := range lines {
         fmt.Println(line)
     }
